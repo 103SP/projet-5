@@ -9,28 +9,26 @@ Response.json().then((data) => {
 
         let a_href = document.createElement('a');
         document.querySelector('#items').appendChild(a_href);
-        a_href.href =  `product.html?id=${data._id}`;
+        a_href.href =  "product.html?id = data._id";
 
         let article = document.createElement('article');
         a_href.appendChild(article);
 
-        let name = document.createElement('productName');
+        let imageUrl = document.createElement('img');
+        article.appendChild(imageUrl);
+        imageUrl.src = data.imageUrl;
+        imageUrl.alt = data.altTxt;
+
+        let name = document.createElement('h3');
         article.appendChild(name);
         name.classList.add('productName');
         name.innerHTML = data.name;
         
-        let description = document.createElement('productDescription');
+        let description = document.createElement('p');
+        article.appendChild(description);
+        description.classList.add('productDescription');
+        description.innerHTML = data.description;
 
-        let imageUrl = document.createElement('img');
-
-        let altTxt = document.createElement('alt');
-       /* + data[i].colors + 
-        + data[i].name + 
-        + data[i].description + 
-       + "<img src=" + data[i].imageUrl + ">" +  
-        + data[i].price + */
- 
-        "</li></ul>";  
         }
 })
 ).catch(err => console.log('erreur : ' + err));
