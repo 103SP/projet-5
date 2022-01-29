@@ -10,11 +10,19 @@ Response.json().then((data) => {
         let a_href = document.createElement('a');
         document.querySelector('#items').appendChild(a_href);
         a_href.href =  `product.html?id=${data._id}`;
+
         let article = document.createElement('article');
         a_href.appendChild(article);
+
         let name = document.createElement('productName');
+        article.appendChild(name);
+        name.classList.add('productName');
+        name.innerHTML = data.name;
+        
         let description = document.createElement('productDescription');
+
         let imageUrl = document.createElement('img');
+
         let altTxt = document.createElement('alt');
        /* + data[i].colors + 
         + data[i].name + 
