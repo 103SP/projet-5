@@ -5,11 +5,10 @@ Response.json().then((data) => {
     console.log(data);
     document.querySelectorAll('#items').innerHTML = data.name;
     for (let i = 0; i < data.length; i++) {
-        document.getElementById("items").innerHTML += ""
 
         let a_href = document.createElement('a');
         document.querySelector('#items').appendChild(a_href);
-        a_href.href =  "product.html?id = ${data._id}";
+        a_href.href =  `product.html?id = ${data[i]._id}`;
         
 
         let article = document.createElement('article');
@@ -17,20 +16,20 @@ Response.json().then((data) => {
 
         let imageUrl = document.createElement('img');
         article.appendChild(imageUrl);
-        imageUrl.src = data.imageUrl;
-        imageUrl.alt = data.altTxt;
+        imageUrl.src = data[i].imageUrl;
+        imageUrl.alt = data[i].altTxt;
         
 
         let name = document.createElement('h3');
         article.appendChild(name);
         name.classList.add('productName');
-        name.innerHTML = data.name;
+        name.innerHTML = data[i].name;
         
         
         let description = document.createElement('p');
         article.appendChild(description);
         description.classList.add('productDescription');
-        description.innerHTML = data.description;
+        description.innerHTML = data[i].description;
         
         //console.log(data[i]._id);
         //console.log(data[i].imageUrl);
