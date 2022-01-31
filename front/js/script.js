@@ -9,7 +9,7 @@ Response.json().then((data) => {
 
         let a_href = document.createElement('a');
         document.querySelector('#items').appendChild(a_href);
-        a_href.href =  "product.html?id = data._id";
+        a_href.href =  "product.html?id = ${data._id}";
         
 
         let article = document.createElement('article');
