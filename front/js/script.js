@@ -10,6 +10,7 @@ Response.json().then((data) => {
         let a_href = document.createElement('a');
         document.querySelector('#items').appendChild(a_href);
         a_href.href =  "product.html?id = data._id";
+        console.log(data[i]._id);
 
         let article = document.createElement('article');
         a_href.appendChild(article);
@@ -18,16 +19,20 @@ Response.json().then((data) => {
         article.appendChild(imageUrl);
         imageUrl.src = data.imageUrl;
         imageUrl.alt = data.altTxt;
+        console.log(data[i].imageUrl);
+        console.log(data[i].altTxt);
 
         let name = document.createElement('h3');
         article.appendChild(name);
         name.classList.add('productName');
         name.innerHTML = data.name;
+        console.log(data[i].name);
         
         let description = document.createElement('p');
         article.appendChild(description);
         description.classList.add('productDescription');
         description.innerHTML = data.description;
+        console.log(data[i].description);
 
         }
 })
