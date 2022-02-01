@@ -1,4 +1,25 @@
 const dataApi = fetch("http://localhost:3000/api/products");
+// récupérer les ID produits avec window location
+const queryString_url_id = window.location.search;
+console.log(queryString_url_id);
+const _id = queryString_url_id.slice();
+console.log(_id);
+
+// récupérer les ID produits avec window location fin
+/*const products = [
+    {nom: 'Kanap Sinopé', quantité: 0},
+    {nom: 'Kanap Cyllène', quantité: 1},
+    {nom: 'Kanap Calycé', quantité: 2},
+    {nom: 'Kanap Autonoé', quantité: 3},
+    {nom: 'Kanap Eurydomé', quantité: 4},
+    {nom: 'Kanap Hélicé', quantité: 5},
+    {nom: 'Kanap Thyoné', quantité: 6},
+    {nom: 'Kanap orthosie', quantité: 7},
+  ];
+
+const resultat = products.find( kanap => kanap.nom === 'Kanap Sinopé');
+console.log(resultat);*/
+
 
 dataApi
 .then(async(responseData) => {
@@ -22,7 +43,7 @@ try{
     
     const affichage_name = document.querySelector("#title");
     const affichage_description = document.querySelector("#description");
-    const affichage_colors = document.querySelector("colors");
+    const affichage_colors = document.querySelector("#colors");
     const affichage_price = document.querySelector("#price");
 
     
