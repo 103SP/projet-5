@@ -14,7 +14,6 @@ let imageUrl = document.querySelector('.item__img');
 let img = document.createElement('img');
 imageUrl.appendChild(img);
 let colors = document.getElementById('colors');
-let colorsoption = document.createElement('option');
 console.log();
 var temp;
 ///////////////////////////////////////////
@@ -29,9 +28,12 @@ fetch(url).then((Response) =>
     img.setAttribute('src', data.imageUrl);
     img.setAttribute('alt', data.altTxt);
 
-    for (let colors of data.colors) {
-      console.log(colors);
-      colors.innerHTML = data.colors;
+    for ( let i=0; i < data.colors.length; i++) {
+      let colorsoption = document.createElement('option');
+      colors.setAttribute("value", data.colors[i]);
+      colorsoption.innerHTML = data.colors[i];
+      colors.appendChild(colorsoption);
+      console.log(data.color);
     }
   })
 );
