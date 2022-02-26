@@ -43,7 +43,7 @@ fetch(url).then((Response) =>
 ///////////////////////////////////
 ///////////ajouter produit////////
 let panier =[]
-localStorage = JSON.parse(localStorage.getItem("item"));
+let produitEnregistre = JSON.parse(localStorage.getItem("item"));
 const addProduct = (event) => {
 //console.log(id,colors.value,quantiter.value);
 let item = {
@@ -59,8 +59,20 @@ if(index === -1){
 }
 else {
   panier[index].quantity = panier[index].quantity + item.quantity;
-  localStorage.setItem("product",JSON.stringify(item));
 }
 console.log(panier);
+
+if(produitEnregistre){
+  produitEnregistre.push(item);
+  localStorage.setItem("produit",JSON.stringify(produitEnregistre));
+  console.log(produitEnregistre);
+}
+else{
+  produitEnregistre = [];
+  produitEnregistre.push(item);
+  localStorage.setItem("produit",JSON.stringify(produitEnregistre));
+  console.log(produitEnregistre);
+}
 }
 ajouter.addEventListener('click',addProduct)
+
