@@ -43,6 +43,7 @@ fetch(url).then((Response) =>
 ///////////////////////////////////
 ///////////ajouter produit////////
 let panier =[]
+localStorage = JSON.parse(localStorage.getItem("item"));
 const addProduct = (event) => {
 //console.log(id,colors.value,quantiter.value);
 let item = {
@@ -54,9 +55,11 @@ let index = panier.findIndex(elem => elem.id ===item.id && elem.color === item.c
 console.log(index);
 if(index === -1){
   panier.push (item)
+  
 }
 else {
   panier[index].quantity = panier[index].quantity + item.quantity;
+  localStorage.setItem("product",JSON.stringify(item));
 }
 console.log(panier);
 }
