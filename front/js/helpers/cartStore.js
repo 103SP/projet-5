@@ -1,18 +1,17 @@
-let cart = [];
-// let produitEnregistre = JSON.parse(localStorage.getItem("item"));
+function set(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-//   if (produitEnregistre) {
-//     produitEnregistre.push(item);
-//     localStorage.setItem("produit", JSON.stringify(produitEnregistre));
-//     console.log(produitEnregistre);
-//   } else {
-//     produitEnregistre = [];
-//     produitEnregistre.push(item);
-//     localStorage.setItem("produit", JSON.stringify(produitEnregistre));
-//     console.log(produitEnregistre);
-//   }
+function get() {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart === null) {
+    return clear();
+  }
+  return cart;
+}
 
 function add(item) {
+  let cart = get();
   let index = cart.findIndex(
     (elem) => elem.id === item.id && elem.color === item.color
   );
@@ -21,15 +20,18 @@ function add(item) {
   } else {
     cart[index].quantity = cart[index].quantity + item.quantity;
   }
+  set(cart);
 }
 
-function get() {
-  return cart;
+function clear() {
+  set([]);
+  return [];
 }
 
 const cartStore = {
   add: add,
-  get: get
+  get: get,
+  clear: clear,
 };
 
 export default cartStore;

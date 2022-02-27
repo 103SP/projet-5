@@ -41,3 +41,7 @@ dom.addToCart.addEventListener("click", (event) => {
   });
   console.log(cartStore.get());
 });
+
+// cartStore.clear()
+
+console.log(cartStore.get());
