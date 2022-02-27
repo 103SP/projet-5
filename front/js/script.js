@@ -1,6 +1,8 @@
 let url =`http://localhost:3000/api/products`;
 let panier = [];
 
+let test
+
 fetch(url).then((Response) =>
 Response.json().then((data) => {
     console.log(data);
