@@ -8,7 +8,7 @@ fetch(url)
   .then((response) => response.json())
   .then((data) => {
     data.forEach((product) => {
-      /* product structure: { altTxt, colors, description, imageUrl, name, price, _id } */
+      /* product: { altTxt, colors, description, imageUrl, name, price, _id } */
       let html = `
       <a href="./product.html?id=${product._id}">
         <article>
