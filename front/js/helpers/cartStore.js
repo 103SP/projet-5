@@ -28,10 +28,8 @@ function clear() {
   return [];
 }
 
-const cartStore = {
-  add: add,
-  get: get,
-  clear: clear,
+export default {
+  add,
+  get,
+  clear,
 };
-
-export default cartStore;
