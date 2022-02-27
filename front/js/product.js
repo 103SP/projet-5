@@ -1,3 +1,5 @@
+import cartStore from "./helpers/cartStore.js";
+
 const queryString = window.location.search;
 var searchParams = new URLSearchParams(queryString);
 const id = searchParams.get("id");
@@ -30,40 +32,12 @@ fetch(url)
       dom.colors.innerHTML += `<option value="${color}">${color}</option>`;
     });
   });
-///////////////////////////////////
-///////////ajouter produit////////
-let panier = [];
-let produitEnregistre = JSON.parse(localStorage.getItem("item"));
-const addProduct = (event) => {
-  //console.log(id,dom.colors.value,dom.quantity.value);
-  let item = {
+
+dom.addToCart.addEventListener("click", (event) => {
+  cartStore.add({
     id: id,
-    quantity: parseInt(dom.quantity.value),
     color: dom.colors.value,
-  };
-  let index = panier.findIndex(
-    (elem) => elem.id === item.id && elem.color === item.color
-  );
-  console.log(index);
-  if (index === -1) {
-    panier.push(item);
-  } else {
-    panier[index].quantity = panier[index].quantity + item.quantity;
-  }
-  console.log(panier);
-
-  if (produitEnregistre) {
-    produitEnregistre.push(item);
-    localStorage.setItem("produit", JSON.stringify(produitEnregistre));
-    console.log(produitEnregistre);
-  } else {
-    produitEnregistre = [];
-    produitEnregistre.push(item);
-    localStorage.setItem("produit", JSON.stringify(produitEnregistre));
-    console.log(produitEnregistre);
-  }
-};
-
-console.log(dom.addToCart)
-
-dom.addToCart.addEventListener("click", addProduct);
+    quantity: parseInt(dom.quantity.value),
+  });
+  console.log(cartStore.get());
+});
