@@ -23,6 +23,15 @@ function add(item) {
   set(cart);
 }
 
+function remove(item) {
+  let cart = get();
+  cart = cart.filter(
+    (elem) => elem.id !== item.id || elem.color !== item.color
+  );
+  set(cart);
+  return cart;
+}
+
 function clear() {
   set([]);
   return [];
@@ -31,5 +40,6 @@ function clear() {
 export default {
   add,
   get,
+  remove,
   clear,
 };
