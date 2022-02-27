@@ -32,6 +32,17 @@ function remove(item) {
   return cart;
 }
 
+function setQuantity(item, quantity) {
+  let cart = get();
+  let index = cart.findIndex(
+    (elem) => elem.id === item.id && elem.color === item.color
+  );
+  if (index !== -1) {
+    cart[index].quantity = quantity;
+  }
+  set(cart);
+}
+
 function clear() {
   set([]);
   return [];
@@ -40,6 +51,7 @@ function clear() {
 export default {
   add,
   get,
+  setQuantity,
   remove,
   clear,
 };

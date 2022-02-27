@@ -37,5 +37,8 @@ for (let item of cartStore.get()) {
     cartStore.remove(item);
     event.target.closest("article.cart__item").remove();
   });
+  div.querySelector(".itemQuantity").addEventListener("change", (event) => {
+    cartStore.setQuantity(item, parseInt(event.target.value));
+  });
   dom.items.appendChild(div.firstChild);
 }
