@@ -1,49 +1,24 @@
-let url =`http://localhost:3000/api/products`;
-let panier = [];
+import api from "./Storage_API/api.js"; // import Products
 
-fetch(url).then((Response) =>
-Response.json().then((data) => {
-    console.log(data);
-    document.querySelectorAll('#items').innerHTML = data.name;
-    for (let i = 0; i < data.length; i++) {
+const dom = {
+  items: document.querySelector("#items"),
+};
 
-        let a_href = document.createElement('a');
-        document.querySelector('#items').appendChild(a_href);
-        a_href.href = `product.html?id=${data[i]._id}`;
+const products = await api.getAllProducts();
+products.forEach((product) => {
+  /* product: { altTxt, colors, description, imageUrl, name, price, _id } */
+  let html = `
+  <a href="./product.html?id=${product._id}">
+    <article>
+      <img src="${product.imageUrl}" alt="${product.altTxt}">
+      <h3 class="productName">${product.name}</h3>
+      <p class="productDescription">${product.description}</p>
+    </article>
+  </a>`;
+  dom.items.innerHTML += html;
+  // les produits page d'acceuil
+});
 
-        let _id = [data[i]._id];
-        //console.log(_id);
-
-        let article = document.createElement('article');
-        a_href.appendChild(article);
-
-        let imageUrl = document.createElement('img');
-        article.appendChild(imageUrl);
-        imageUrl.src = data[i].imageUrl;
-        imageUrl.alt = data[i].altTxt;
-        
-
-        let name = document.createElement('h3');
-        article.appendChild(name);
-        name.classList.add('productName');
-        name.innerHTML = data[i].name;
-        
-        
-        let description = document.createElement('p');
-        article.appendChild(description);
-        description.classList.add('productDescription');
-        description.innerHTML = data[i].description;
-
-        
-        //console.log(data[i]._id);
-        //console.log(data[i].imageUrl);
-        //console.log(data[i].altTxt);
-        //console.log(data[i].name);
-        //console.log(data[i].description);
-
-        }
-})
-).catch(err => console.log('erreur : ' + err));
 
 /*<a href="./product.html?id=42">
 <article>
