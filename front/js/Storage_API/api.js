@@ -1,5 +1,5 @@
 const API_URL = "http://localhost:3000/api";
-//Récupération des products
+//Récupération API_URL des products
 function getAllProducts() {
   return fetch(`${API_URL}/products`)
     .then((response) => response.json())
