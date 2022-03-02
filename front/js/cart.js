@@ -43,38 +43,3 @@ for (let item of cartStore.get()) {
   dom.items.appendChild(div.firstChild);
 }
 
-
-function getForm() {
-  
-  form = document.querySelector(".cart__order__form");
-
-  form.firstName.addEventListener('change', function() {
-      validFirstName(this);
-  });
-
-  form.lastName.addEventListener('change', function() {
-      validLastName(this);
-  });
-
-  form.address.addEventListener('change', function() {
-      validAddress(this);
-  });
-
-  form.city.addEventListener('change', function() {
-      validCity(this);
-  });
-
-  form.email.addEventListener('change', function() {
-      validEmail(this);
-  });
-
-  const validFirstName = function(inputFirstName) {
-      let firstNameErrorMsg = inputFirstName.nextElementSibling;
-
-      if (charRegExp.test(inputFirstName.value)) {
-          firstNameErrorMsg.innerHTML = '';
-      } else {
-          firstNameErrorMsg.innerHTML = 'Veuillez renseigner ce champ.';
-      }
-  };
-}
