@@ -1,6 +1,7 @@
 import api from "./Storage_API/api.js";
 import cartStore from "./Storage_API/cartStore.js";
-
+//let productsLocalStorage = JSON.parse(localStorage.getItem("products"));
+//console.table(productsLocalStorage);
 const dom = {
   items: document.getElementById("cart__items"),
 };
@@ -124,3 +125,32 @@ function getForm() {
 };
 }
 getForm();
+
+document.querySelector(".cart__order__form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  if (this.reportValidity()) {
+      let config = await config.getConfig();
+      let result = await fetch(`${config.getServerPath()}/order`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+              contact: {
+                  firstName: this.querySelector('[name="firstName"]').value,
+                  lastName: this.querySelector('[name="lastName"]').value,
+                  address: this.querySelector('[name="address"]').value,
+                  city: this.querySelector('[name="city"]').value,
+                  email: this.querySelector('[name="email"]').value
+              },
+              products: cartStore.getListProductId()
+          })
+      });
+      let data = await result.json();
+      document.querySelector("#cartAndFormContainer").classList.add("hide");
+      document.querySelector("#orderId").innerHTML = data.orderId;
+      document.querySelector(".confirmation").classList.remove("hide");
+      cartStore.clear();
+
+  }
+});
